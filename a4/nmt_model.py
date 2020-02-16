@@ -56,8 +56,8 @@ class NMT(nn.Module):
         self.counter = 0
 
 
-        self.encoder = nn.LSTM(embed_size, hidden_size, 1, bias = True, bidirectional = True)
-        self.decoder = nn.LSTMCell(embed_size + hidden_size, hidden_size, 1) # because of the concatenation of y,o
+        self.encoder = nn.LSTM(embed_size, hidden_size, num_layers = 1, bias = True, bidirectional = True)
+        self.decoder = nn.LSTMCell(embed_size + hidden_size, hidden_size, bias = True) # because of the concatenation of y,o
         self.h_projection = nn.Linear(2 * hidden_size, hidden_size, bias = False)
         self.c_projection = nn.Linear(2 * hidden_size, hidden_size, bias = False)
         self.att_projection = nn.Linear(2 * hidden_size, hidden_size, bias = False) # not yet to e, need multiply by h^dec still
