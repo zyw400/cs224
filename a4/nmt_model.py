@@ -145,7 +145,7 @@ class NMT(nn.Module):
         """
         enc_hiddens, dec_init_state = None, None
 
-        X = self.model_embeddings.source(source_padded)
+        X = self.model_embeddings.source(source_padded, self.model_embeddings.source.weight)
         X_pack_padded = nn.utils.rnn.pack_padded_sequence(X, source_lengths)
         
         enc_hiddens_raw, (last_hidden, last_cell) = self.encoder(X_pack_padded) # h_0, c_0 default to zero!
