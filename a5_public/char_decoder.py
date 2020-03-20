@@ -99,7 +99,7 @@ class CharDecoder(nn.Module):
             device = device) * self.target_vocab.start_of_word
         state = initialStates
         # print(current_char.size())
-        if_no_ended = torch.ones(batch_size)
+        if_no_ended = torch.ones(batch_size).to(device)
 
         for t in range(max_length):
 
